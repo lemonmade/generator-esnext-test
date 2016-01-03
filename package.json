@@ -6,15 +6,20 @@
   "author": {
     "name": "Chris Sauve",
     "email": "chris.sauve@shopify.com",
-    "url": " "
   },
   "files": [
     "src",
     "generators"
   ],
-  "main": "src/index.js",
   "keywords": [
-    "yeoman-generator"
+    "yeoman",
+    "yeoman-generator",
+    "tests",
+    "mocha",
+    "sinon",
+    "chai",
+    "es6",
+    "es2015"
   ],
   "scripts": {
     "clean": "rimraf generators coverage",
