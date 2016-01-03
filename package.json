@@ -1,11 +1,12 @@
 {
   "name": "generator-esnext-test",
+  "main": "generators/app/index.js",
+  "jsnext:main": "src/app/index.js",
   "version": "1.0.0",
   "description": "A Yeoman generator for creating tests using what's next in JavaScript.",
-  "homepage": "",
   "author": {
     "name": "Chris Sauve",
-    "email": "chris.sauve@shopify.com",
+    "email": "chris.sauve@shopify.com"
   },
   "files": [
     "src",

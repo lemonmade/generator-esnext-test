@@ -5,7 +5,8 @@
     "shopify"
   ],
   "env": {
-    "es6": true
+    "es6": true,
+    "node": true
   },
   "rules": {
     "shopify/require-flow": [2, "never"]
