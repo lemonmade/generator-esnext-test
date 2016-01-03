@@ -21,6 +21,12 @@ module.exports = class ESNextTestGenerator extends BaseGenerator {
       required: false,
       desc: 'Whether to enable coverage collection for tests.',
     });
+
+    this.option('helper', {
+      type: Boolean,
+      required: false,
+      desc: 'Whether to copy a simple helper file.',
+    });
   }
 
   initializing() {
@@ -29,14 +35,17 @@ module.exports = class ESNextTestGenerator extends BaseGenerator {
     this.props = {
       testDir: options.testDir,
       coverage: options.coverage,
+      helper: options.helper,
     };
   }
 
   prompting() {
     let done = this.async();
-    let {options} = this;
+    let {options, props} = this;
 
-    this.log(yosay(`Welcome to the ${chalk.red('esnext-test')} generator!`));
+    if (!options.skipWelcomeMessage) {
+      this.log(yosay(`Welcome to the ${chalk.red('esnext-test')} generator!`));
+    }
 
     let prompts = [
       {
@@ -48,27 +57,37 @@ module.exports = class ESNextTestGenerator extends BaseGenerator {
 
       {
         name: 'coverage',
+        message: 'Whether to enable coverage collection for tests.',
         type: 'confirm',
         default: true,
         when: options.coverage == null,
       },
+
+      {
+        name: 'helper',
+        message: 'Whether to copy a simple helper file.',
+        type: 'confirm',
+        default: true,
+        when: options.helper == null,
+      },
     ];
 
-    this.prompt(prompts, (props) => {
-      this.props = {...this.props, ...props};
+    this.prompt(prompts, (newProps) => {
+      this.props = {...props, ...newProps};
       done();
     });
   }
 
   writing() {
+    let {props} = this;
     let {scripts} = ownPackage;
 
     let scriptUpdates = {
-      test: scripts.test.replace('test', this.props.testDir.replace(/\/$/, '')),
+      test: scripts.test.replace('test', props.testDir.replace(/\/$/, '')),
       'test:watch': scripts['test:watch'],
     };
 
-    if (this.props.coverage) {
+    if (props.coverage) {
       scriptUpdates['test:cover'] = scripts['test:cover'];
     }
 
@@ -76,13 +95,16 @@ module.exports = class ESNextTestGenerator extends BaseGenerator {
     _.merge(pkg, {scripts: scriptUpdates});
     this.fs.writeJSON(this.destinationPath('package.json'), pkg);
 
-    this.fs.copy(
-      this.templatePath('helper.js'),
-      this.destinationPath(path.join(this.props.testDir, 'helper.js'))
-    );
+    if (props.helper) {
+      this.fs.copy(
+        this.templatePath('helper.js'),
+        this.destinationPath(path.join(props.testDir, 'helper.js'))
+      );
+    }
   }
 
   install() {
+    let {props} = this;
     let devDependencies = [
       'mocha',
       'chai',
@@ -91,7 +113,7 @@ module.exports = class ESNextTestGenerator extends BaseGenerator {
       'babel-core',
     ];
 
-    if (this.props.coverage) {
+    if (props.coverage) {
       devDependencies.push('isparta', 'coveralls');
     }
 

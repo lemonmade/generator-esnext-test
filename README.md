@@ -1,5 +1,8 @@
-# generator-esnext-test [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
-> A Yeoman generator for creating tests using what&#39;s next in JavaScript.
+# generator-esnext-test
+
+[![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
+
+> A Yeoman generator for creating tests using what's next in JavaScript.
 
 ## Installation
 
@@ -16,6 +19,20 @@ Then generate your new project:
 yo esnext-test
 ```
 
+## What You Get
+
+The following is installed by this generator (`helper.js` is only installed when the `helper` option/ prompt is true, which it is by default):
+
+```
+|-- package.json
+|-- test/
+  |-- helper.js
+```
+
+The `package.json` file is created if it does not exist, and the `scripts` property is augmented with a `test` and `test:watch` command (and a `test:cover` command, if the `coverage` option/ prompt is set to `true`).
+
+You can change the test directory by setting the `testDir` option/ prompt.
+
 ## Getting To Know Yeoman
 
  * Yeoman has a heart of gold.
@@ -25,14 +42,16 @@ yo esnext-test
 
 ## License
 
-MIT © [Chris Sauve]( )
-
+MIT © Chris Sauve
 
 [npm-image]: https://badge.fury.io/js/generator-esnext-test.svg
 [npm-url]: https://npmjs.org/package/generator-esnext-test
+
 [travis-image]: https://travis-ci.org/lemonmade/generator-esnext-test.svg?branch=master
 [travis-url]: https://travis-ci.org/lemonmade/generator-esnext-test
+
 [daviddm-image]: https://david-dm.org/lemonmade/generator-esnext-test.svg?theme=shields.io
 [daviddm-url]: https://david-dm.org/lemonmade/generator-esnext-test
+
 [coveralls-image]: https://coveralls.io/repos/lemonmade/generator-esnext-test/badge.svg
 [coveralls-url]: https://coveralls.io/r/lemonmade/generator-esnext-test

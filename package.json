@@ -1,6 +1,6 @@
 {
   "name": "generator-esnext-test",
-  "version": "0.0.0",
+  "version": "0.0.2",
   "description": "A Yeoman generator for creating tests using what's next in JavaScript.",
   "homepage": "",
   "author": {
@@ -9,7 +9,8 @@
     "url": " "
   },
   "files": [
-    "src"
+    "src",
+    "generators"
   ],
   "main": "src/index.js",
   "keywords": [

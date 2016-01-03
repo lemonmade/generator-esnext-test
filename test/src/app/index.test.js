@@ -2,6 +2,7 @@ import '../../helper';
 
 import path from 'path';
 import helpers from 'yeoman-test';
+import assert from 'yeoman-assert';
 
 import ownPackage from '../../../package.json';
 
@@ -37,7 +38,15 @@ describe('generator-esnext-test:app', () => {
     it('installs all required dependencies', () => {
       let args = generator.npmInstall.lastCall.args;
 
-      expect(args[0]).to.include('mocha', 'chai', 'sinon', 'sinon-chai', 'babel-core', 'isparta', 'coveralls');
+      expect(args[0]).to.include(
+        'mocha',
+        'chai',
+        'sinon',
+        'sinon-chai',
+        'babel-core',
+        'isparta',
+        'coveralls'
+      );
       expect(args[1]).to.deep.equal({saveDev: true});
     });
 
@@ -49,6 +58,20 @@ describe('generator-esnext-test:app', () => {
           'test:cover': ownPackage.scripts['test:cover'],
         },
       });
+    });
+  });
+
+  describe('--no-helper', () => {
+    beforeEach((done) => {
+      helpers
+        .run(generatorIndex)
+        .withOptions({helper: false})
+        .on('ready', spyOnGenerator)
+        .on('end', done);
+    });
+
+    it('does not copy the helper file', () => {
+      assert.noFile(['test/helper.js']);
     });
   });
 
