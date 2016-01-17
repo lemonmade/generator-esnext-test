@@ -1,6 +1,6 @@
 # generator-esnext-test
 
-[![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
+[![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
 
 > A Yeoman generator for creating tests using what's next in JavaScript.
 
@@ -52,6 +52,3 @@ MIT © Chris Sauve
 
 [daviddm-image]: https://david-dm.org/lemonmade/generator-esnext-test.svg?theme=shields.io
 [daviddm-url]: https://david-dm.org/lemonmade/generator-esnext-test
-
-[coveralls-image]: https://coveralls.io/repos/lemonmade/generator-esnext-test/badge.svg
-[coveralls-url]: https://coveralls.io/r/lemonmade/generator-esnext-test
